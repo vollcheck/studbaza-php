@@ -1,6 +1,7 @@
 ## TODO
 
-- [ ] Update the bootstrap in views?
+- [ ] update the bootstrap in views?
+- [ ] make shared layout
 
 
 ### Preparation

@@ -10,15 +10,15 @@
 
 <nav class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{{ URL::to('subjects') }}">Subject Alert</a>
+        <a class="navbar-brand" href="{{ URL::to('groups') }}">Group Alert</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('subjects') }}">View All Subject</a></li>
-        <li><a href="{{ URL::to('subjects/create') }}">Create a Subject</a>
+        <li><a href="{{ URL::to('groups') }}">View All Group</a></li>
+        <li><a href="{{ URL::to('groups/create') }}">Create a Group</a>
     </ul>
 </nav>
 
-<h1>All the subjects</h1>
+<h1>All the groups</h1>
 
 <!-- will be used to show any messages -->
 @if (Session::has('message'))
@@ -36,7 +36,7 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($subjects as $key => $value)
+    @foreach($groups as $key => $value)
         <tr>
             <td>{{ $value->id }}</td>
             <td>{{ $value->name }}</td>
@@ -44,12 +44,12 @@
 	    <td>{{ $value->exam_date }}</td> <!-- TODO: formatting here -->
 
             <td>
-		{{ Form::open(array('url' => 'subjects/' . $value->id, 'class' => 'pull-right')) }}
+		{{ Form::open(array('url' => 'groups/' . $value->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this subject', array('class' => 'btn btn-warning')) }}
+                    {{ Form::submit('Delete this group', array('class' => 'btn btn-warning')) }}
                 {{ Form::close() }}
-                <a class="btn btn-small btn-success" href="{{ URL::to('subjects/' . $value->id) }}">Show</a>
-                <a class="btn btn-small btn-info" href="{{ URL::to('subjects/' . $value->id . '/edit') }}">Edit</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('groups/' . $value->id) }}">Show</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('groups/' . $value->id . '/edit') }}">Edit</a>
             </td>
         </tr>
     @endforeach
