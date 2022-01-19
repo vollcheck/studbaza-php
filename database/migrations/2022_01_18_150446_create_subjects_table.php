@@ -37,7 +37,7 @@ class CreateSubjectsTable extends Migration
             'lecturer' => 'prof. Bartosz Marcinkowski',
             'exam_date' => '22.01.2022',
         ]
-    ]);
+        ]);
     }
 
     /**
@@ -47,6 +47,6 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject');
+        Schema::dropIfExists('subjects');
     }
 }
