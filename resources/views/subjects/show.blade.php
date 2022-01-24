@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ $subject->name }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,10 +14,13 @@
                         </div>
                     @endif
 
-                    <ul class="nav navbar-nav">
-			<li><a href="{{ URL::to('subjects') }}">Subjects</a></li>
-			<li><a href="{{ URL::to('users') }}">Subjects</a></li>
-		    </ul>
+		    <div class="jumbotron text-center">
+			<p>
+			    <strong>Lecturer:</strong> {{ $subject->lecturer }}<br>
+			    <strong>Exam date:</strong> {{ $subject->exam_date }}
+			</p>
+		    </div>
+
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::all();
-        return view('subject.index')->with('subjects', $subjects);
+        return view('subjects.index', ['subjects' => $subjects]);
     }
 
     /**
@@ -29,7 +29,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return View::make('subject.create');
+        return view('subjects.create');
     }
 
     /**
@@ -78,7 +78,7 @@ class SubjectController extends Controller
     {
         $subject = Subject::find($id);
 
-        return View::make('subjects.show')->with('subject', $subject);
+        return view('subjects.show', ['subject' => $subject]);
     }
 
     /**
@@ -91,7 +91,7 @@ class SubjectController extends Controller
     {
         $subject = Subject::find($id);
 
-        return View::make('subjects.edit')->with('subject', $subject);
+        return view('subjects.edit', ['subject', $subject]);
     }
 
     /**

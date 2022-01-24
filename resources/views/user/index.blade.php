@@ -8,13 +8,18 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
+		    <!-- not sure which message should I use -->
+		    @if (Session::has('message'))
+			<div class="alert alert-info">{{ Session::get('message') }}</div>
+		    @endif
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
+		    <!-- end of messages -->
 
-                    {{ __('You are logged in!') }}
+		    You are logged in!
                 </div>
             </div>
         </div>
