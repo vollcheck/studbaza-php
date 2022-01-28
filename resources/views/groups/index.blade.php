@@ -16,54 +16,55 @@
 		</div>
 
 		@else
-		<div class="card-header">{{ __('Users table') }}</div>
+                <div class="card-header">{{ __('All the groups') }}</div>
                 <div class="card-body">
-			<!-- not sure which message should I use -->
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+		    <!-- will be used to show any messages -->
 		    @if (Session::has('message'))
 			<div class="alert alert-info">{{ Session::get('message') }}</div>
-		    @endif
-		    @if (session('status'))
-			<div class="alert alert-success" role="alert">
-			    {{ session('status') }}
-			</div>
 		    @endif
 
 		    <table class="table table-striped table-bordered">
 			<thead>
 			    <tr>
-				<td>Name</td>
-				<td>Email</td>
-				<td>Group ID</td>
+				<td>Group name</td>
+				<!-- <td>Members</td> -->
 				@if (Auth::user()->is_admin)
 				    <td>Actions</td>
 				@endif
 			    </tr>
 			</thead>
 			<tbody>
-			@foreach($users as $key => $value)
+			@foreach($groups as $key => $value)
 			    <tr>
 				<td>{{ $value->name }}</td>
-				<td>{{ $value->email }}</td>
-				<td>{{ $value->group_id }}</td>
 
 				@if (Auth::user()->is_admin)
 				    <td>
-					{{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
+					{{ Form::open(array('url' => 'groups/' . $value->id, 'class' => 'pull-right')) }}
 					    {{ Form::hidden('_method', 'DELETE') }}
-					    {{ Form::submit('Delete this user', array('class' => 'btn btn-warning')) }}
+					    {{ Form::submit('Delete this group', array('class' => 'btn btn-warning')) }}
 					{{ Form::close() }}
-					<a class="btn btn-small btn-success" href="{{ URL::to('users/' . $value->id) }}">Show</a>
-					<a class="btn btn-small btn-info" href="{{ URL::to('users/' . $value->id . '/edit') }}">Edit</a>
+					<a class="btn btn-small btn-success" href="{{ URL::to('groups/' . $value->id) }}">Show</a>
+					<a class="btn btn-small btn-info" href="{{ URL::to('groups/' . $value->id . '/edit') }}">Edit</a>
 				    </td>
 				@endif
 			    </tr>
 			@endforeach
+			<tr>
+			    <td colspan="4" class="text-center"><a href="{{ URL::to('groups/create') }}">Create another group</a></td>
+			</tr>
 			</tbody>
 		    </table>
 		</div>
 		@endguest
-            </div>
-        </div>
+	    </div>
+	</div>
     </div>
 </div>
 @endsection

@@ -19,7 +19,7 @@ class GroupController extends Controller
     public function index()
     {
         $groups = Group::all();
-        return view('group.index')->with('groups', $groups);
+        return view('groups.index')->with('groups', $groups);
     }
 
     /**

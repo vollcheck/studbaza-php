@@ -1,10 +1,12 @@
 ## TODO
 
 - [ ] welcome view saying couple words about the application
-- [ ] limit the views for administrator
+- [ ] introduce admin mechanism
+- [X] limit the views for administrator
 - [ ] update the bootstrap in views?
 - [ ] make shared layout
 - [ ] add admin group
+- [ ] integration with the google drive (maybe calendar?)
 
 
 ### Preparation

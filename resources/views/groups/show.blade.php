@@ -5,7 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-
 		@guest
 		<div class="card-body">
 		    In order to see the content, please
@@ -30,7 +29,6 @@
 			    <strong>Exam date:</strong> {{ $subject->exam_date }}
 			</p>
 		    </div>
-
                 </div>
 		@endguest
             </div>

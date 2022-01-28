@@ -5,8 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('All the subjects') }}</div>
 
+		@guest
+		<div class="card-body">
+		    In order to see the content, please
+		    <a href="{{ route('login') }}">{{ __('log in') }}</a>
+		    or
+		    <a href="{{ route('register') }}">{{ __('register') }}</a>
+		    .
+		</div>
+
+		@else
+                <div class="card-header">{{ __('All the subjects') }}</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -22,29 +32,32 @@
 		   <table class="table table-striped table-bordered">
 		       <thead>
 			   <tr>
-			       <td>ID</td>
 			       <td>Name</td>
 			       <td>Lecturer</td>
 			       <td>Exam Ddate</td>
-			       <td>Actions</td>
+
+                               @if (Auth::user()->is_admin)
+				   <td>Actions</td>
+			       @endif
 			   </tr>
 		       </thead>
 		       <tbody>
 		       @foreach($subjects as $key => $value)
 			   <tr>
-			       <td>{{ $value->id }}</td>
 			       <td>{{ $value->name }}</td>
 			       <td>{{ $value->lecturer }}</td>
-			       <td>{{ $value->exam_date }}</td> <!-- TODO: formatting here -->
+			       <td>{{ $value->exam_date }}</td> <!-- TODO: format as a date -->
 
-			       <td>
-				   {{ Form::open(array('url' => 'subjects/' . $value->id, 'class' => 'pull-right')) }}
-				       {{ Form::hidden('_method', 'DELETE') }}
-				       {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }}
-				   {{ Form::close() }}
-				   <a class="btn btn-small btn-success" href="{{ URL::to('subjects/' . $value->id) }}">Show</a>
-				   <a class="btn btn-small btn-info" href="{{ URL::to('subjects/' . $value->id . '/edit') }}">Edit</a>
-			       </td>
+			       @if (Auth::user()->is_admin)
+				   <td>
+				       {{ Form::open(array('url' => 'subjects/' . $value->id, 'class' => 'pull-right')) }}
+					   {{ Form::hidden('_method', 'DELETE') }}
+					   {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }}
+				       {{ Form::close() }}
+				       <a class="btn btn-small btn-success" href="{{ URL::to('subjects/' . $value->id) }}">Show</a>
+				       <a class="btn btn-small btn-info" href="{{ URL::to('subjects/' . $value->id . '/edit') }}">Edit</a>
+				   </td>
+			       @endif
 			   </tr>
 		       @endforeach
 		       <tr>
@@ -53,6 +66,7 @@
 		       </tbody>
 		   </table>
                 </div>
+		@endguest
             </div>
         </div>
     </div>
