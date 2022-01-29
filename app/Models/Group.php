@@ -22,4 +22,9 @@ class Group extends Model
     {
         return $this->hasMany('App\User', 'group_id');
     }
+
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject', 'group_id');
+    }
 }
