@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Group;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $group = Group::find(Auth::user()->group_id);
+        $subjects = $group->subjects();
+        return view('home', [
+            'user_group' => $group,
+            'user_subjects' => $subjects,
+        ]);
     }
 }

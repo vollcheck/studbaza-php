@@ -45,7 +45,14 @@
 			    </div>
 			@endif
 
-			See the list of your subjects:
+			@if (Auth::user()->group_id)
+			    <h3>{{ $user_group->name }}</h3>
+
+			    List of your subjects:
+
+			@else
+			    You have no group yet, please contact administrator.
+			@endif
 		    </div>
 		</div>
 	    </div>
