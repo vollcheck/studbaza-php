@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user.index')->with('users', $users);
+        return view('users.index')->with('users', $users);
     }
 
     /**
@@ -39,20 +39,20 @@ class UserController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('subjects/create')
+            return Redirect::to('users/create')
                 ->withErrors($validator)
                 ->withInput($request->except('password'));
         } else {
             // store
-            $subject = new Subject;
-            $subject->name       = $request->get('name');
-            $subject->lecturer   = $request->get('lecturer');
-            $subject->exam_date  = $request->get('exam_date');
-            $subject->save();
+            $user = new User;
+            $user->name       = $request->get('name');
+            $user->lecturer   = $request->get('lecturer');
+            $user->exam_date  = $request->get('exam_date');
+            $user->save();
 
             // redirect
-            Session::flash('message', 'Successfully created subject!');
-            return Redirect::to('subjects');
+            Session::flash('message', 'Successfully created user!');
+            return Redirect::to('users');
         }
     }
 
@@ -109,7 +109,7 @@ class UserController extends Controller
             $user->save();
 
             // redirect
-            Session::flash('message', 'Successfully updated subject!');
+            Session::flash('message', 'Successfully updated user!');
             return Redirect::to('users');
         }
     }
@@ -122,11 +122,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $subject = Subject::find($id);
-        $subject->delete();
+        $user = User::find($id);
+        $user->delete();
 
         // redirect
-        Session::flash('message', 'Successfully deleted the subject!');
-        return Redirect::to('subjects');
+        Session::flash('message', 'Successfully deleted the user!');
+        return Redirect::to('users');
     }
 }

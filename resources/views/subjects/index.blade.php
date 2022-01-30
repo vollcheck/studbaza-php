@@ -34,7 +34,8 @@
 			   <tr>
 			       <td>Name</td>
 			       <td>Lecturer</td>
-			       <td>Exam Ddate</td>
+			       <td>Exam Date</td>
+			       <td>Group</td>
 
                                @if (Auth::user()->is_admin)
 				   <td>Actions</td>
@@ -47,6 +48,7 @@
 			       <td>{{ $value->name }}</td>
 			       <td>{{ $value->lecturer }}</td>
 			       <td>{{ $value->exam_date }}</td> <!-- TODO: format as a date -->
+			       <td>{{ $value->group() }}</td>
 
 			       @if (Auth::user()->is_admin)
 				   <td>

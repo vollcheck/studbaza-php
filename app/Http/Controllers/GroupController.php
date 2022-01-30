@@ -29,7 +29,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return View::make('group.create');
+        return View::make('groups.create');
     }
 
     /**
@@ -44,8 +44,6 @@ class GroupController extends Controller
         // validate
         $rules = array(
             'name'      => 'required',
-            'lecturer'  => 'required',
-            'exam_date' => 'required',
         );
         $validator = Validator::make($request->all(), $rules);
 
@@ -58,8 +56,6 @@ class GroupController extends Controller
             // store
             $group = new Group;
             $group->name       = $request->get('name');
-            $group->lecturer   = $request->get('lecturer');
-            $group->exam_date  = $request->get('exam_date');
             $group->save();
 
             // redirect
@@ -105,23 +101,19 @@ class GroupController extends Controller
     {
         // validate
         $rules = array(
-            'name'      => 'required',
-            'lecturer'  => 'required',
-            'exam_date' => 'required',
+            'name' => 'required',
         );
         $validator = Validator::make($request->all(), $rules);
 
         // process the login
         if ($validator->fails()) {
             return Redirect::to('groups/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withRequest($request->except('password'));
+                   ->withErrors($validator)
+                   ->withRequest($request->except('password'));
         } else {
             // store
             $group = Group::find($id);
-            $group->name       = $request->get('name');
-            $group->lecturer   = $request->get('lecturer');
-            $group->exam_date  = $request->get('exam_date');
+            $group->name = $request->get('name');
             $group->save();
 
             // redirect

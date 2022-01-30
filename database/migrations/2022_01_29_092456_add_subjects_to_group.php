@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Group;
+
 class AddSubjectsToGroup extends Migration
 {
     /**
@@ -13,8 +15,8 @@ class AddSubjectsToGroup extends Migration
      */
     public function up()
     {
-        Schema::table('group', function (Blueprint $table) {
-            //
+        Schema::table('subjects', function (Blueprint $table) {
+            $table->foreignIdFor(Group::class)->nullable();
         });
     }
 
@@ -25,7 +27,7 @@ class AddSubjectsToGroup extends Migration
      */
     public function down()
     {
-        Schema::table('group', function (Blueprint $table) {
+        Schema::table('subjects', function (Blueprint $table) {
             //
         });
     }

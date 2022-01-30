@@ -21,7 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'group_id',
     ];
 
     /**
@@ -46,6 +45,6 @@ class User extends Authenticatable
 
     public function group()
     {
-        return $this->belongsTo('App\Group', 'group_id');
+        return $this->belongsTo(Group::class);
     }
 }

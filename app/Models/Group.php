@@ -20,11 +20,11 @@ class Group extends Model
 
     public function users()
     {
-        return $this->hasMany('App\User', 'group_id');
+        return $this->hasMany(User::class);
     }
 
     public function subjects()
     {
-        return $this->hasMany('App\Subject', 'group_id');
+        return $this->hasMany(Subject::class);
     }
 }

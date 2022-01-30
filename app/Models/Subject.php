@@ -30,6 +30,6 @@ class Subject extends Model
 
     public function group()
     {
-        return $this->belongsTo('App\Group', 'group_id');
+        return $this->belongsTo(Group::class);
     }
 }
