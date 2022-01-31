@@ -27,8 +27,6 @@
 				<li><a href="{{ URL::to('subjects') }}">Subjects</a></li>
 				<li><a href="{{ URL::to('users') }}">Users</a></li>
 				<li><a href="{{ URL::to('groups') }}">Groups</a></li>
-				<li><a href="{{ url('/home') }}">home page</a></li>
-				<li><a href="{{ url('/') }}">welcome page</a></li>
 			    </ul>
 			</div>
 		    </div>
@@ -48,7 +46,11 @@
 			@if (Auth::user()->group_id)
 			    <h3>{{ $user_group->name }}</h3>
 
-			    List of your subjects:
+			    <ul>
+			    @foreach($user_subjects as $key => $value)
+				<li>{{ $value->name }}</li>
+			    @endforeach
+			    </ul>
 
 			@else
 			    You have no group yet, please contact administrator.

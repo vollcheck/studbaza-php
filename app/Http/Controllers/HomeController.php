@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $group = Group::find(Auth::user()->group_id);
-        $subjects = $group->subjects();
+        $subjects = $group->subjects()->get();
         return view('home', [
             'user_group' => $group,
             'user_subjects' => $subjects,
